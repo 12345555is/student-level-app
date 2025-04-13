@@ -123,4 +123,43 @@ st.markdown("""
 """, unsafe_allow_html=True)
 # טוען את קובץ השאלות
 try:
+import math_quiz
+except ModuleNotFoundError:
+    st.error("קובץ השאלות לא נטען. ודא שקובץ math_quiz.py קיים בתיקייה הראשית.")
+
+st.header("🧠 שאלון קביעת רמה במתמטיקה")
+
+# מציג את השאלות מהקובץ
+if hasattr(math_quiz, "questions"):
+    for i, q in enumerate(math_quiz.questions, 1):
+        st.markdown(f"**שאלה {i}:** {q['question']}")
+        if q['type'] == 'multiple_choice':
+            st.radio("בחר תשובה:", q['options'], key=f"q{i}")
+        elif q['type'] == 'open':
+            st.text_input("התשובה שלך:", key=f"q{i}")
+else:
+    st.warning("אין שאלות בקובץ. ודא שקובץ math_quiz.py בנוי נכון.")
+import streamlit as st
+from PIL import Image
+
+def show_math_quiz_image():
+    st.header("🧮 שאלון מתמטי לקביעת רמת התלמיד")
+
+    try:
+        image = Image.open("images/math_level_test.jpg")
+        st.image(image, caption="פתרו את התרגילים וכתבו במחברת", use_column_width=True)
+        
+        with open("images/math_level_test.jpg", "rb") as file:
+            btn = st.download_button(
+                label="📥 הורד את שאלון התרגילים",
+                data=file,
+                file_name="שאלון_רמת_מתמטיקה.jpg",
+                mime="image/jpeg"
+            )
+    except FileNotFoundError:
+        st.error("התמונה לא נמצאה. ודא שהקובץ נמצא בתיקייה images עם השם הנכון.")
+
+# קרא לפונקציה איפה שאתה רוצה שהשאלון יופיע
+show_math_quiz_image()
+
 
