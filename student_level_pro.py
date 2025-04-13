@@ -139,4 +139,27 @@ if hasattr(math_quiz, "questions"):
             st.text_input("התשובה שלך:", key=f"q{i}")
 else:
     st.warning("אין שאלות בקובץ. ודא שקובץ math_quiz.py בנוי נכון.")
+import streamlit as st
+from PIL import Image
+
+def show_math_quiz_image():
+    st.header("🧮 שאלון מתמטי לקביעת רמת התלמיד")
+
+    try:
+        image = Image.open("images/math_level_test.jpg")
+        st.image(image, caption="פתרו את התרגילים וכתבו במחברת", use_column_width=True)
+        
+        with open("images/math_level_test.jpg", "rb") as file:
+            btn = st.download_button(
+                label="📥 הורד את שאלון התרגילים",
+                data=file,
+                file_name="שאלון_רמת_מתמטיקה.jpg",
+                mime="image/jpeg"
+            )
+    except FileNotFoundError:
+        st.error("התמונה לא נמצאה. ודא שהקובץ נמצא בתיקייה images עם השם הנכון.")
+
+# קרא לפונקציה איפה שאתה רוצה שהשאלון יופיע
+show_math_quiz_image()
+
 
