@@ -122,8 +122,7 @@ st.markdown("""
 </p>
 """, unsafe_allow_html=True)
 # טוען את קובץ השאלות
-try:
-import math_quiz
+try:import math_quiz
 except ModuleNotFoundError:
     st.error("קובץ השאלות לא נטען. ודא שקובץ math_quiz.py קיים בתיקייה הראשית.")
 
