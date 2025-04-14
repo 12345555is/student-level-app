@@ -120,12 +120,5 @@ st.markdown("""
 <p style='text-align: center; color: gray; font-size: 13px;'>
 פותח עבור צוות חינוכי • כל הזכויות שמורות © 2025
 </p>
-""", unsafe_allow_html=True)
-# טוען את קובץ השאלות
-try:import math_quiz
-except ModuleNotFoundError:
-    st.error("קובץ השאלות לא נטען. ודא שקובץ math_quiz.py קיים בתיקייה הראשית.")
-
-show_math_quiz_image()
 
 
